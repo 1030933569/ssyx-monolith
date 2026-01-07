@@ -1,0 +1,65 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: ssyx-monolith
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/ssyx?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+    hikari:
+      connection-test-query: SELECT 1
+      connection-timeout: 60000
+      idle-timeout: 500000
+      max-lifetime: 540000
+      maximum-pool-size: 10
+      minimum-idle: 3
+      pool-name: SsyxMonolithHikariPool
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+    database: ${REDIS_DB:0}
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+mybatis-plus:
+  type-enums-package: cn.itedus.ssyx.enums
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 微信小程序（按需用环境变量覆盖）
+wx:
+  open:
+    app_id: ${WX_OPEN_APP_ID:}
+    app_secret: ${WX_OPEN_APP_SECRET:}
+
+# 微信支付（按需用环境变量覆盖）
+weixin:
+  appid: ${WEIXIN_APPID:}
+  partner: ${WEIXIN_PARTNER:}
+  partnerkey: ${WEIXIN_PARTNERKEY:}
+  notifyurl: ${WEIXIN_NOTIFYURL:}
+  cert: ${WEIXIN_CERT:}
+
+# 阿里云 OSS（按需用环境变量覆盖）
+aliyun:
+  endpoint: ${ALIYUN_OSS_ENDPOINT:}
+  keyid: ${ALIYUN_OSS_KEYID:}
+  keysecret: ${ALIYUN_OSS_KEYSECRET:}
+  bucketname: ${ALIYUN_OSS_BUCKET:}
+

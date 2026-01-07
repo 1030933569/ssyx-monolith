@@ -98,8 +98,6 @@ public class RedisMqConsumer implements SmartLifecycle {
                     continue;
                 }
                 dispatch((MqMessage) messageObj);
-            } catch (InterruptedException interrupted) {
-                Thread.currentThread().interrupt();
             } catch (Exception ex) {
                 log.error("Redis MQ consume failed", ex);
                 sleepQuietly(1000);

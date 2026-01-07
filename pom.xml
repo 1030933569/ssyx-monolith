@@ -37,6 +37,7 @@
         <jodatime.version>2.10.1</jodatime.version>
         <xxl-job.version>2.3.0</xxl-job.version>
         <commons-lang.version>2.6</commons-lang.version>
+        <commons-io.version>2.11.0</commons-io.version>
     </properties>
 
     <!--配置dependencyManagement锁定依赖的版本-->
@@ -98,6 +99,11 @@
                 <groupId>commons-lang</groupId>
                 <artifactId>commons-lang</artifactId>
                 <version>${commons-lang.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

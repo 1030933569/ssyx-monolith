@@ -5,13 +5,18 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Run stage
-FROM openjdk:8-jre-slim
+FROM eclipse-temurin:8-jre-jammy
 WORKDIR /app
 COPY --from=build /app/ssyx-monolith/target/*.jar app.jar
 
 # Set timezone
+ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends tzdata \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo $TZ > /etc/timezone \
+    && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]

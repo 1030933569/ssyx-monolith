@@ -26,7 +26,7 @@
         <skipTests>true</skipTests>
         <java.version>1.8</java.version>
         <mybatis-plus.version>3.4.1</mybatis-plus.version>
-        <mysql.version>5.1.34</mysql.version>
+        <mysql.version>8.0.33</mysql.version>
         <jwt.version>0.7.0</jwt.version>
         <fastjson.version>2.0.0</fastjson.version>
         <httpclient.version>4.5.1</httpclient.version>

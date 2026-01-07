@@ -43,6 +43,11 @@
             <scope>provided </scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
         <!--创建索引库的-->
     </dependencies>
 </project>

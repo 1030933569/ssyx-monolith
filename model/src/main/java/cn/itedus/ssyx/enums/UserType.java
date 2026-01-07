@@ -1,19 +1,18 @@
 package cn.itedus.ssyx.enums;
 
 import com.alibaba.fastjson.annotation.JSONType;
-
 import com.baomidou.mybatisplus.annotation.EnumValue;
-import com.fasterxml.jackson.databind.deser.std.EnumDeserializer;
-import com.fasterxml.jackson.databind.ser.std.EnumSerializer;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
-@JSONType(serializer = EnumSerializer.class, deserializer = EnumDeserializer.class, serializeEnumAsJavaBean = true)
+@JSONType(serializeEnumAsJavaBean = true)
 @Getter
 public enum UserType {
     USER(0,"会员"),
     LEADER(1,"团长" );
 
     @EnumValue
+    @JsonValue
     private Integer code ;
     private String comment ;
 

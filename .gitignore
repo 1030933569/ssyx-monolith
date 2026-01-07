@@ -39,3 +39,6 @@ hs_err_pid*
 /lottery-interfaces/target/
 /lottery-rpc/target/
 
+# 前端项目
+/ssyx-admin/
+/ssyx-wechat/

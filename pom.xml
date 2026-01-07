@@ -36,6 +36,7 @@
         <knife4j.version>2.0.8</knife4j.version>
         <jodatime.version>2.10.1</jodatime.version>
         <xxl-job.version>2.3.0</xxl-job.version>
+        <commons-lang.version>2.6</commons-lang.version>
     </properties>
 
     <!--配置dependencyManagement锁定依赖的版本-->
@@ -92,6 +93,11 @@
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

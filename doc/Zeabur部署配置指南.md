@@ -38,7 +38,7 @@ ssyx-monolith/
 | 环境变量名 | 说明 | 示例值 |
 |-----------|------|--------|
 | `WX_OPEN_APP_ID` | 微信小程序 AppID | `wxf103a66e025a65e4` |
-| `WX_OPEN_APP_SECRET` | 微信小程序 AppSecret | `b406bef3bb94b58eee4c3979f4a68aa7` |
+| `WX_OPEN_APP_SECRET` | 微信小程序 AppSecret | `` |
 
 ### 2.2 数据库配置
 

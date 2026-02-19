@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author: Guanghao Wei
@@ -64,6 +65,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public LeaderAddressVo getLeadAddressVoByUserId(Long userId) {
+        if (userId == null) {
+            return null;
+        }
         LambdaQueryWrapper<UserDelivery> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(UserDelivery::getUserId, userId);
         lambdaQueryWrapper.eq(UserDelivery::getIsDeleted, 0);
@@ -71,11 +75,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         lambdaQueryWrapper.orderByDesc(UserDelivery::getUpdateTime);
         lambdaQueryWrapper.last("LIMIT 1");
         UserDelivery userDelivery = userDeliveryMapper.selectOne(lambdaQueryWrapper);
-        if (userDelivery == null) {
-            return null;
+
+        Leader leader = resolveValidLeader(userDelivery);
+        if (leader == null) {
+            // 兜底：用户没有提货点时自动绑定一个可用提货点，保证业务流程可跑通（毕设场景）
+            userDelivery = ensureDefaultUserDelivery(userId);
+            leader = resolveValidLeader(userDelivery);
         }
-        Leader leader = leaderMapper.selectById(userDelivery.getLeaderId());
-        if (leader == null || leader.getIsDeleted() != null && leader.getIsDeleted() == 1) {
+        if (leader == null || userDelivery == null) {
             return null;
         }
         LeaderAddressVo leaderAddressVo = new LeaderAddressVo();
@@ -84,19 +91,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         leaderAddressVo.setLeaderId(leader.getId());
         leaderAddressVo.setLeaderName(leader.getName());
         leaderAddressVo.setLeaderPhone(leader.getPhone());
-        leaderAddressVo.setWareId(userDelivery.getWareId());
+        leaderAddressVo.setWareId(userDelivery.getWareId() != null ? userDelivery.getWareId() : 1L);
         leaderAddressVo.setStorePath(leader.getStorePath());
         return leaderAddressVo;
     }
 
     @Override
     public UserLoginVo getUserLoginVoByUserId(Long userId) {
+        if (userId == null) {
+            return null;
+        }
         User user = userMapper.selectById(userId);
         UserLoginVo userLoginVo = new UserLoginVo();
-        userLoginVo.setPhotoUrl(user.getPhotoUrl());
-        userLoginVo.setNickName(user.getNickName());
-        userLoginVo.setOpenId(user.getOpenId());
-        userLoginVo.setIsNew(user.getIsNew());
+        if (user != null) {
+            userLoginVo.setPhotoUrl(user.getPhotoUrl());
+            userLoginVo.setNickName(user.getNickName());
+            userLoginVo.setOpenId(user.getOpenId());
+            userLoginVo.setIsNew(user.getIsNew());
+        }
         userLoginVo.setUserId(userId);
 
         UserDelivery userDelivery = userDeliveryMapper.selectOne(
@@ -106,15 +118,157 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                         .orderByDesc(UserDelivery::getUpdateTime)
                         .last("LIMIT 1")
         );
-        if (userDelivery != null) {
+
+        // 缓存里必须有 leaderId/wareId，避免前端/下单流程卡在“请选择提货点”
+        if (resolveValidLeader(userDelivery) == null) {
+            userDelivery = ensureDefaultUserDelivery(userId);
+        }
+        if (userDelivery != null && userDelivery.getLeaderId() != null) {
             userLoginVo.setLeaderId(userDelivery.getLeaderId());
-            userLoginVo.setWareId(userDelivery.getWareId());
+            userLoginVo.setWareId(userDelivery.getWareId() != null ? userDelivery.getWareId() : 1L);
         } else {
             userLoginVo.setLeaderId(1L);
             userLoginVo.setWareId(1L);
         }
         return userLoginVo;
 
+    }
+
+    /**
+     * 兜底：保证当前用户一定有一个默认提货点绑定（user_delivery.is_default=1）。
+     * <p>
+     * 触发条件：用户未绑定默认提货点、或绑定的提货点不存在/已删除/未审核通过。
+     */
+    private UserDelivery ensureDefaultUserDelivery(Long userId) {
+        if (userId == null) {
+            return null;
+        }
+
+        // 双重检查：避免每次都写库
+        UserDelivery current = getLatestDefaultDelivery(userId);
+        if (resolveValidLeader(current) != null) {
+            return current;
+        }
+
+        Leader leader = findAnyAvailableLeader();
+        if (leader == null) {
+            leader = createFallbackLeader(userId);
+        }
+        if (leader == null || leader.getId() == null) {
+            return null;
+        }
+
+        return bindDefaultDelivery(userId, leader.getId(), 1L);
+    }
+
+    private UserDelivery getLatestDefaultDelivery(Long userId) {
+        return userDeliveryMapper.selectOne(
+                new LambdaQueryWrapper<UserDelivery>()
+                        .eq(UserDelivery::getUserId, userId)
+                        .eq(UserDelivery::getIsDeleted, 0)
+                        .eq(UserDelivery::getIsDefault, 1)
+                        .orderByDesc(UserDelivery::getUpdateTime)
+                        .last("LIMIT 1")
+        );
+    }
+
+    private Leader resolveValidLeader(UserDelivery userDelivery) {
+        if (userDelivery == null || userDelivery.getLeaderId() == null) {
+            return null;
+        }
+        Leader leader = leaderMapper.selectById(userDelivery.getLeaderId());
+        if (leader == null) {
+            return null;
+        }
+        if (Objects.equals(leader.getIsDeleted(), 1)) {
+            return null;
+        }
+        // 提货点列表接口会过滤 check_status=1，这里也保持一致，避免绑定到不可用提货点
+        if (!Objects.equals(leader.getCheckStatus(), 1)) {
+            return null;
+        }
+        return leader;
+    }
+
+    private Leader findAnyAvailableLeader() {
+        return leaderMapper.selectOne(
+                new LambdaQueryWrapper<Leader>()
+                        .eq(Leader::getIsDeleted, 0)
+                        .eq(Leader::getCheckStatus, 1)
+                        .orderByAsc(Leader::getId)
+                        .last("LIMIT 1")
+        );
+    }
+
+    private Leader createFallbackLeader(Long userId) {
+        User user = userMapper.selectById(userId);
+
+        Leader leader = new Leader();
+        leader.setUserId(userId);
+
+        String nickName = user != null ? user.getNickName() : null;
+        leader.setName(StringUtils.hasText(nickName) ? nickName : ("系统团长" + userId));
+
+        String phone = user != null ? user.getPhone() : null;
+        leader.setPhone(StringUtils.hasText(phone) ? phone : "0");
+
+        leader.setTakeName("默认提货点");
+        leader.setDetailAddress("默认提货点地址");
+        leader.setLongitude(0D);
+        leader.setLatitude(0D);
+        leader.setHaveStore(1);
+        leader.setStorePath("");
+        leader.setWorkStatus(0);
+        leader.setTakeType("1");
+        leader.setCheckStatus(1);
+        leader.setCheckTime(new Date());
+        leader.setCheckUser("system");
+        leader.setIsDeleted(0);
+
+        // 不设置 applyStatus/applyTime，兼容未执行 add_leader_apply.sql 的库结构
+        leaderMapper.insert(leader);
+        return leader;
+    }
+
+    private UserDelivery bindDefaultDelivery(Long userId, Long leaderId, Long wareId) {
+        if (userId == null || leaderId == null) {
+            return null;
+        }
+        Long safeWareId = wareId != null ? wareId : 1L;
+
+        this.clearDefaultDelivery(userId);
+
+        UserDelivery existing = userDeliveryMapper.selectOne(
+                new LambdaQueryWrapper<UserDelivery>()
+                        .eq(UserDelivery::getUserId, userId)
+                        .eq(UserDelivery::getLeaderId, leaderId)
+                        .eq(UserDelivery::getIsDeleted, 0)
+                        .orderByDesc(UserDelivery::getUpdateTime)
+                        .last("LIMIT 1")
+        );
+        if (existing != null) {
+            UserDelivery update = new UserDelivery();
+            update.setId(existing.getId());
+            update.setIsDefault(1);
+            if (existing.getWareId() == null) {
+                update.setWareId(safeWareId);
+                existing.setWareId(safeWareId);
+            }
+            userDeliveryMapper.updateById(update);
+            existing.setIsDefault(1);
+            return existing;
+        }
+
+        UserDelivery insert = new UserDelivery();
+        insert.setUserId(userId);
+        insert.setLeaderId(leaderId);
+        insert.setWareId(safeWareId);
+        insert.setIsDefault(1);
+        insert.setCreateTime(new Date());
+        insert.setUpdateTime(new Date());
+        insert.setIsDeleted(0);
+        userDeliveryMapper.insert(insert);
+        return insert;
     }
 
     @Override

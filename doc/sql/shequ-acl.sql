@@ -2,7 +2,7 @@
 SQLyog Ultimate - MySQL GUI v8.2 
 MySQL - 8.0.28 : Database - shequ-acl
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 

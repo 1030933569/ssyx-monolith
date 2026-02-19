@@ -84,6 +84,9 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     public OrderConfirmVo confirmOrder() {
         //获取用户Id
         Long userId = AuthContextHolder.getUserId();
+        if (userId == null) {
+            throw new SsyxException(ResultCodeEnum.LOGIN_AUTH);
+        }
 
         //获取用户地址团长信息
         LeaderAddressVo leaderAddressVo = userFeignClient.getUserAddressByUserId(userId);
@@ -107,6 +110,9 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     public Long submitOrder(OrderSubmitVo orderSubmitVo) {
         //添加当前用户
         Long userId = AuthContextHolder.getUserId();
+        if (userId == null) {
+            throw new SsyxException(ResultCodeEnum.LOGIN_AUTH);
+        }
         orderSubmitVo.setUserId(userId);
         //防重订单号校验：Redis
         //主要就是那这前端传来的订单号去Redis中查询，如果存在，则删除Redis中的订单号，没有的话，就抛出异常，说明此订单重复提交
@@ -114,6 +120,19 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         if (StringUtil.isEmpty(orderNo)) {
             throw new SsyxException(ResultCodeEnum.ILLEGAL_REQUEST);
         }
+        if (orderSubmitVo.getLeaderId() == null || orderSubmitVo.getLeaderId() <= 0) {
+            throw new SsyxException("请先选择提货点", ResultCodeEnum.ILLEGAL_REQUEST.getCode());
+        }
+
+        // 先校验购物车与提货点，避免后续失败导致防重订单号被消费
+        List<CartInfo> cartInfoList = cartFeignClient.getCartCheckedList(userId);
+        if (CollectionUtils.isEmpty(cartInfoList)) {
+            throw new SsyxException(ResultCodeEnum.DATA_ERROR);
+        }
+        if (null == userFeignClient.getUserAddressByUserId(userId)) {
+            throw new SsyxException("请先选择提货点", ResultCodeEnum.ILLEGAL_REQUEST.getCode());
+        }
+
         String script = "if(redis.call('get', KEYS[1]) == ARGV[1]) then return redis.call('del', KEYS[1]) else return 0 end";
         Boolean flag = (Boolean) redisTemplate.execute(new DefaultRedisScript(script, Boolean.class), Arrays.asList(RedisConst.ORDER_REPEAT + orderNo), orderNo);
         if (!flag) {
@@ -121,7 +140,6 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         }
 
         //验证商品库存并且锁定商品（这里主要针对普通商品）
-        List<CartInfo> cartInfoList = cartFeignClient.getCartCheckedList(userId);
         List<CartInfo> commonSkuList = cartInfoList.stream().filter(cartInfo -> cartInfo.getSkuType().intValue() == SkuType.COMMON.getCode()).collect(Collectors.toList());
         if (!CollectionUtils.isEmpty(commonSkuList)) {
             List<SkuStockLockVo> commonStockLockVoList = commonSkuList.stream().map(cartInfo -> {
@@ -162,7 +180,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         }
         LeaderAddressVo leaderAddressVo = userFeignClient.getUserAddressByUserId(userId);
         if (null == leaderAddressVo) {
-            throw new SsyxException(ResultCodeEnum.DATA_ERROR);
+            throw new SsyxException("请先选择提货点", ResultCodeEnum.ILLEGAL_REQUEST.getCode());
         }
 
         //计算购物项分摊的优惠减少金额，按比例分摊，退款时按实际支付金额退款

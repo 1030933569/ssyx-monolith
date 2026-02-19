@@ -1,5 +1,8 @@
 package cn.itedus.ssyx.user.service.impl;
 
+import cn.itedus.ssyx.common.auth.AuthContextHolder;
+import cn.itedus.ssyx.common.exception.SsyxException;
+import cn.itedus.ssyx.common.result.ResultCodeEnum;
 import cn.itedus.ssyx.enums.UserType;
 import cn.itedus.ssyx.model.user.Leader;
 import cn.itedus.ssyx.model.user.User;
@@ -9,12 +12,17 @@ import cn.itedus.ssyx.user.mapper.UserDeliveryMapper;
 import cn.itedus.ssyx.user.mapper.UserMapper;
 import cn.itedus.ssyx.user.service.UserService;
 import cn.itedus.ssyx.vo.user.LeaderAddressVo;
+import cn.itedus.ssyx.vo.user.LeaderOpenGroupReqVo;
 import cn.itedus.ssyx.vo.user.UserLoginVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import java.util.Date;
 
 /**
  * @author: Guanghao Wei
@@ -30,6 +38,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     private LeaderMapper leaderMapper;
 
+    private Long getRequiredLoginUserId() {
+        Long userId = AuthContextHolder.getUserId();
+        if (userId == null) {
+            throw new SsyxException(ResultCodeEnum.LOGIN_AUTH);
+        }
+        return userId;
+    }
+
+    private void clearDefaultDelivery(Long userId) {
+        UserDelivery updateEntity = new UserDelivery();
+        updateEntity.setIsDefault(0);
+        userDeliveryMapper.update(updateEntity,
+                new LambdaQueryWrapper<UserDelivery>()
+                        .eq(UserDelivery::getUserId, userId)
+                        .eq(UserDelivery::getIsDeleted, 0)
+                        .eq(UserDelivery::getIsDefault, 1));
+    }
+
     @Override
     public User getByOpenId(String openId) {
         User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getOpenId, openId));
@@ -40,12 +66,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public LeaderAddressVo getLeadAddressVoByUserId(Long userId) {
         LambdaQueryWrapper<UserDelivery> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(UserDelivery::getUserId, userId);
+        lambdaQueryWrapper.eq(UserDelivery::getIsDeleted, 0);
         lambdaQueryWrapper.eq(UserDelivery::getIsDefault, 1);
+        lambdaQueryWrapper.orderByDesc(UserDelivery::getUpdateTime);
+        lambdaQueryWrapper.last("LIMIT 1");
         UserDelivery userDelivery = userDeliveryMapper.selectOne(lambdaQueryWrapper);
         if (userDelivery == null) {
             return null;
         }
         Leader leader = leaderMapper.selectById(userDelivery.getLeaderId());
+        if (leader == null || leader.getIsDeleted() != null && leader.getIsDeleted() == 1) {
+            return null;
+        }
         LeaderAddressVo leaderAddressVo = new LeaderAddressVo();
         BeanUtils.copyProperties(leader, leaderAddressVo);
         leaderAddressVo.setUserId(userId);
@@ -69,7 +101,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         UserDelivery userDelivery = userDeliveryMapper.selectOne(
                 new LambdaQueryWrapper<UserDelivery>().eq(UserDelivery::getUserId, userId)
+                        .eq(UserDelivery::getIsDeleted, 0)
                         .eq(UserDelivery::getIsDefault, 1)
+                        .orderByDesc(UserDelivery::getUpdateTime)
+                        .last("LIMIT 1")
         );
         if (userDelivery != null) {
             userLoginVo.setLeaderId(userDelivery.getLeaderId());
@@ -80,5 +115,120 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         return userLoginVo;
 
+    }
+
+    @Override
+    @Transactional
+    public Long applyForLeader(Leader leader) {
+        if (leader == null) {
+            throw new SsyxException(ResultCodeEnum.DATA_ERROR);
+        }
+        // 获取当前登录用户ID
+        Long userId = this.getRequiredLoginUserId();
+
+        // 兜底必填信息（最简化开团时前端可能不传 name/phone）
+        User user = userMapper.selectById(userId);
+        if (!StringUtils.hasText(leader.getName())) {
+            String nickName = user != null ? user.getNickName() : null;
+            leader.setName(StringUtils.hasText(nickName) ? nickName : ("团长" + userId));
+        }
+        if (!StringUtils.hasText(leader.getPhone())) {
+            String phone = user != null ? user.getPhone() : null;
+            leader.setPhone(StringUtils.hasText(phone) ? phone : "0");
+        }
+
+        // 保存团长信息
+        leader.setUserId(userId);
+        leader.setCheckStatus(1); // 自动审核通过
+        leader.setCheckTime(new Date());
+        leader.setCheckUser("system");
+        leader.setApplyStatus(1); // 开团已通过
+        leader.setApplyTime(new Date());
+        leader.setWorkStatus(0); // 营业状态：营业中
+        leader.setHaveStore(1); // 有门店
+        leader.setTakeType("1"); // 默认类型：宝妈
+        leader.setIsDeleted(0);
+
+        leaderMapper.insert(leader);
+
+        // 保存用户与团长的关联关系（默认提货点）
+        this.clearDefaultDelivery(userId);
+        UserDelivery userDelivery = new UserDelivery();
+        userDelivery.setUserId(userId);
+        userDelivery.setLeaderId(leader.getId());
+        userDelivery.setWareId(1L);
+        userDelivery.setIsDefault(1);
+        userDelivery.setCreateTime(new Date());
+        userDelivery.setUpdateTime(new Date());
+        userDelivery.setIsDeleted(0);
+
+        userDeliveryMapper.insert(userDelivery);
+
+        return leader.getId();
+    }
+
+    @Override
+    @Transactional
+    public LeaderAddressVo openLeader(LeaderOpenGroupReqVo reqVo) {
+        if (reqVo == null || !StringUtils.hasText(reqVo.getTakeName()) || !StringUtils.hasText(reqVo.getDetailAddress())) {
+            throw new SsyxException(ResultCodeEnum.DATA_ERROR);
+        }
+
+        Leader leader = new Leader();
+        leader.setTakeName(reqVo.getTakeName());
+        leader.setDetailAddress(reqVo.getDetailAddress());
+        leader.setLongitude(reqVo.getLongitude());
+        leader.setLatitude(reqVo.getLatitude());
+        leader.setStorePath(reqVo.getStorePath());
+
+        this.applyForLeader(leader);
+
+        Long userId = this.getRequiredLoginUserId();
+        return this.getLeadAddressVoByUserId(userId);
+    }
+
+    @Override
+    @Transactional
+    public LeaderAddressVo joinLeader(Long leaderId) {
+        Long userId = this.getRequiredLoginUserId();
+        if (leaderId == null) {
+            throw new SsyxException(ResultCodeEnum.DATA_ERROR);
+        }
+
+        Leader leader = leaderMapper.selectById(leaderId);
+        if (leader == null || (leader.getIsDeleted() != null && leader.getIsDeleted() == 1) || (leader.getCheckStatus() != null && leader.getCheckStatus() != 1)) {
+            throw new SsyxException(ResultCodeEnum.DATA_ERROR);
+        }
+
+        this.clearDefaultDelivery(userId);
+
+        LambdaQueryWrapper<UserDelivery> query = new LambdaQueryWrapper<UserDelivery>()
+                .eq(UserDelivery::getUserId, userId)
+                .eq(UserDelivery::getLeaderId, leaderId)
+                .eq(UserDelivery::getIsDeleted, 0)
+                .orderByDesc(UserDelivery::getUpdateTime)
+                .last("LIMIT 1");
+        UserDelivery existing = userDeliveryMapper.selectOne(query);
+        if (existing != null) {
+            UserDelivery update = new UserDelivery();
+            update.setId(existing.getId());
+            update.setIsDefault(1);
+            if (existing.getWareId() == null) {
+                update.setWareId(1L);
+            }
+            userDeliveryMapper.updateById(update);
+        } else {
+            UserDelivery insert = new UserDelivery();
+            insert.setUserId(userId);
+            insert.setLeaderId(leaderId);
+            insert.setWareId(1L);
+            insert.setIsDefault(1);
+            insert.setCreateTime(new Date());
+            insert.setUpdateTime(new Date());
+            insert.setIsDeleted(0);
+            userDeliveryMapper.insert(insert);
+        }
+
+        return this.getLeadAddressVoByUserId(userId);
     }
 }

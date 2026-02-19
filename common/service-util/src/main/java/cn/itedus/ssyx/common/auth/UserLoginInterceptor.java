@@ -26,19 +26,35 @@ public class UserLoginInterceptor implements HandlerInterceptor {
     //前置拦截方法
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        AuthContextHolder.clear();
         this.initUserLoginVo(request);
         return true;
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        AuthContextHolder.clear();
     }
 
     private void initUserLoginVo(HttpServletRequest request) {
         //从请求头获取token
         String token = request.getHeader("token");
-        System.out.println("token = " + token);
         if (!StringUtils.isEmpty(token)) {
-            Long userId = JwtHelper.getUserId(token);
+            Long userId;
+            try {
+                userId = JwtHelper.getUserId(token);
+            } catch (Exception e) {
+                return;
+            }
+            if (userId == null) {
+                return;
+            }
+
+            // token 能解析出 userId 时，先设置用户上下文，不依赖 Redis 当前是否命中
+            AuthContextHolder.setUserId(userId);
+
             UserLoginVo userLoginVo = (UserLoginVo) redisTemplate.opsForValue().get(RedisConst.USER_LOGIN_KEY_PREFIX + userId);
             if (null != userLoginVo) {
-                AuthContextHolder.setUserId(userLoginVo.getUserId());
                 AuthContextHolder.setWareId(userLoginVo.getWareId());
                 AuthContextHolder.setUserLoginVo(userLoginVo);
             }

@@ -60,4 +60,12 @@ public class AuthContextHolder {
     public static void setAdminLoginVo(AdminLoginVo _adminLoginVo) {
         adminLoginVo.set(_adminLoginVo);
     }
+
+    public static void clear() {
+        userId.remove();
+        wareId.remove();
+        userLoginVo.remove();
+        adminId.remove();
+        adminLoginVo.remove();
+    }
 }

@@ -111,12 +111,12 @@ public class Leader extends BaseEntity {
 	private String checkContent;
 
 	@ApiModelProperty(value = "开团状态: 0-待审核 1-已通过 2-已拒绝")
-	@TableField("apply_status")
+	@TableField(exist = false)
 	private Integer applyStatus;
 
 	@ApiModelProperty(value = "申请时间")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@TableField("apply_time")
+	@TableField(exist = false)
 	private Date applyTime;
 
 }

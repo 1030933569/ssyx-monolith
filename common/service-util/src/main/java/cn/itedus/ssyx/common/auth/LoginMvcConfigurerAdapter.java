@@ -25,4 +25,12 @@ public class LoginMvcConfigurerAdapter extends WebMvcConfigurationSupport {
                 .excludePathPatterns("/api/user/weixin/wxLogin/*");
         super.addInterceptors(registry);
     }
+
+    @Override
+    protected void addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry registry) {
+        // 解决 Knife4j/Swagger 静态资源被拦截导致 404 的问题
+        registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        super.addResourceHandlers(registry);
+    }
 }

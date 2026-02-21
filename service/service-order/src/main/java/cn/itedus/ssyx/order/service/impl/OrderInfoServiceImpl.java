@@ -316,14 +316,17 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public IPage<OrderInfo> findUserOrderPage(Page<OrderInfo> pageModel, OrderUserQueryVo orderUserQueryVo) {
 
-        IPage<OrderInfo> pageResult = orderInfoMapper.selectPage(pageModel, new LambdaQueryWrapper<OrderInfo>().eq(OrderInfo::getUserId, orderUserQueryVo.getUserId()).eq(OrderInfo::getOrderStatus, orderUserQueryVo.getOrderStatus()));
-        List<OrderInfo> orderInfoList = pageResult.getRecords();
-        for (OrderInfo orderInfo : orderInfoList) {
+        LambdaQueryWrapper<OrderInfo> wrapper = new LambdaQueryWrapper<OrderInfo>()
+                .eq(OrderInfo::getUserId, orderUserQueryVo.getUserId())
+                .eq(orderUserQueryVo.getOrderStatus() != null, OrderInfo::getOrderStatus, orderUserQueryVo.getOrderStatus())
+                .orderByDesc(OrderInfo::getId);
+        IPage<OrderInfo> pageResult = orderInfoMapper.selectPage(pageModel, wrapper);
+        for (OrderInfo orderInfo : pageResult.getRecords()) {
             List<OrderItem> orderItemList = orderItemService.list(new LambdaQueryWrapper<OrderItem>().eq(OrderItem::getOrderId, orderInfo.getId()));
             orderInfo.setOrderItemList(orderItemList);
-            orderInfo.getParam().put("orderStatusName",orderInfo.getOrderStatus().getComment());
+            orderInfo.getParam().put("orderStatusName", orderInfo.getOrderStatus().getComment());
         }
-        return pageModel;
+        return pageResult;
     }
 
     private void updateOrderStatus(Long orderId, ProcessStatus processStatus) {

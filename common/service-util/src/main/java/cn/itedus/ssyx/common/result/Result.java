@@ -78,7 +78,7 @@ public class Result<T> {
      * @return 结果集
      */
     public static <T> Result<T> fail(T data, ResultCodeEnum paymentError) {
-        return build(data, ResultCodeEnum.FAIL);
+        return build(data, paymentError);
     }
 
     public static <T> Result<T> fail() {

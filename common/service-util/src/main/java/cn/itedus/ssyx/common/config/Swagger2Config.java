@@ -79,7 +79,7 @@ public class Swagger2Config {
     private ApiInfo webApiInfo() {
         return new ApiInfoBuilder()
                 .title("网站-API文档")
-                .description("本文档描述了尚上优选网站微服务接口定义")
+                .description("本文档描述了团团团购网站微服务接口定义")
                 .version("1.0")
                 .contact(new Contact("Komorebi", "http://itedus.com", "itedus"))
                 .build();
@@ -88,7 +88,7 @@ public class Swagger2Config {
     private ApiInfo adminApiInfo() {
         return new ApiInfoBuilder()
                 .title("后台管理系统-API文档")
-                .description("本文档描述了尚上优选后台系统服务接口定义")
+                .description("本文档描述了团团团购后台系统服务接口定义")
                 .version("1.0")
                 .contact(new Contact("Komorebi", "http://itedus.com", "itedus"))
                 .build();

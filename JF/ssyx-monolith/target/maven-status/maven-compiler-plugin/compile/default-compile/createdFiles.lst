@@ -1,0 +1,9 @@
+cn/itedus/ssyx/client/local/LocalSkuClient.class
+cn/itedus/ssyx/client/local/LocalOrderClient.class
+cn/itedus/ssyx/config/CorsConfig.class
+cn/itedus/ssyx/MonolithApplication.class
+cn/itedus/ssyx/client/local/LocalProductClient.class
+cn/itedus/ssyx/client/local/LocalCartClient.class
+cn/itedus/ssyx/client/local/LocalActivityClient.class
+cn/itedus/ssyx/client/local/LocalUserClient.class
+cn/itedus/ssyx/mq/RedisMqConsumer.class

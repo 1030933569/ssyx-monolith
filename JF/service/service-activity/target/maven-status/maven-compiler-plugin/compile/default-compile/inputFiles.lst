@@ -1,0 +1,17 @@
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/controller/SeckillController.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/service/impl/ActivityInfoServiceImpl.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/mapper/ActivityRuleMapper.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/controller/ActivityInfoController.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/mapper/SeckillMapper.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/service/SeckillService.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/mapper/CouponUserMapper.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/service/CouponInfoService.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/service/ActivityInfoService.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/api/ActivityInfoApiController.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/controller/CouponInfoController.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/service/impl/SeckillServiceImpl.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/mapper/CouponRangeMapper.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/mapper/ActivitySkuMapper.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/mapper/CouponInfoMapper.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/service/impl/CouponInfoServiceImpl.java
+/app/service/service-activity/src/main/java/cn/itedus/ssyx/activity/mapper/ActivityInfoMapper.java

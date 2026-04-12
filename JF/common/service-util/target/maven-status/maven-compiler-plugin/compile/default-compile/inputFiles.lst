@@ -1,0 +1,12 @@
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/auth/AuthContextHolder.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/constant/RedisConst.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/auth/UserLoginInterceptor.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/exception/GlobalExceptionHandler.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/result/Result.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/config/RedisConfig.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/config/RedissonConfig.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/result/ResultCodeEnum.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/auth/LoginMvcConfigurerAdapter.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/config/MybatisPlusConfig.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/config/Swagger2Config.java
+/app/common/service-util/src/main/java/cn/itedus/ssyx/common/exception/SsyxException.java

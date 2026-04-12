@@ -15,5 +15,10 @@ public class LocalOrderClient implements OrderFeignClient {
     public OrderInfo getOrderInfoByOrderNo(String orderNo) {
         return orderInfoService.getOrderInfoByOrderNo(orderNo);
     }
+
+    @Override
+    public void orderPay(String orderNo) {
+        orderInfoService.orderPay(orderNo);
+    }
 }
 

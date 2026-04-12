@@ -18,4 +18,12 @@ public interface OrderFeignClient {
      */
     @GetMapping("/api/order/inner/getOrderInfoByOrderNo/{orderNo}")
     public OrderInfo getOrderInfoByOrderNo(@PathVariable("orderNo") String orderNo);
+
+    /**
+     * 按订单号推进订单支付状态
+     *
+     * @param orderNo 订单号
+     */
+    @GetMapping("/api/order/inner/orderPay/{orderNo}")
+    public void orderPay(@PathVariable("orderNo") String orderNo);
 }

@@ -1,0 +1,3 @@
+/app/common/rabbitmq-util/src/main/java/cn/itedus/ssyx/mq/service/RabbitService.java
+/app/common/rabbitmq-util/src/main/java/cn/itedus/ssyx/mq/constant/MqConst.java
+/app/common/rabbitmq-util/src/main/java/cn/itedus/ssyx/mq/model/MqMessage.java

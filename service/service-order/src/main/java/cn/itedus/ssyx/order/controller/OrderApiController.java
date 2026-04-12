@@ -14,11 +14,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @author: Guanghao Wei
- * @date: 2023-07-03 15:19
- * @description: 订单服务接口
- */
 @Api(tags = "订单管理接口")
 @RestController
 @RequestMapping("/api/order")
@@ -34,13 +29,11 @@ public class OrderApiController {
         return Result.ok(orderConfirmVo);
     }
 
-
     @ApiOperation("生成订单接口")
     @PostMapping("auth/submitOrder")
     public Result submitOrder(@RequestBody OrderSubmitVo orderSubmitVo) {
         Long orderId = orderInfoService.submitOrder(orderSubmitVo);
         return Result.ok(orderId);
-
     }
 
     @ApiOperation("订单详情接口")
@@ -50,10 +43,16 @@ public class OrderApiController {
         return Result.ok(orderInfo);
     }
 
-    @ApiOperation("根据订单编号获取订单项")
+    @ApiOperation("根据订单号获取订单")
     @GetMapping("inner/getOrderInfoByOrderNo/{orderNo}")
     public OrderInfo getOrderInfoByOrderNo(@PathVariable("orderNo") String orderNo) {
         return orderInfoService.getOrderInfoByOrderNo(orderNo);
+    }
+
+    @ApiOperation("根据订单号推进订单支付状态")
+    @GetMapping("inner/orderPay/{orderNo}")
+    public void orderPay(@PathVariable("orderNo") String orderNo) {
+        orderInfoService.orderPay(orderNo);
     }
 
     @ApiOperation("获取用户订单分页列表")
@@ -67,5 +66,4 @@ public class OrderApiController {
         IPage<OrderInfo> iPage = orderInfoService.findUserOrderPage(pageModel, orderUserQueryVo);
         return Result.ok(iPage);
     }
-
 }

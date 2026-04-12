@@ -1,0 +1,3 @@
+cn/itedus/ssyx/mq/model/MqMessage.class
+cn/itedus/ssyx/mq/constant/MqConst.class
+cn/itedus/ssyx/mq/service/RabbitService.class

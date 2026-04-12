@@ -1,0 +1,9 @@
+/app/ssyx-monolith/src/main/java/cn/itedus/ssyx/client/local/LocalSkuClient.java
+/app/ssyx-monolith/src/main/java/cn/itedus/ssyx/client/local/LocalCartClient.java
+/app/ssyx-monolith/src/main/java/cn/itedus/ssyx/client/local/LocalActivityClient.java
+/app/ssyx-monolith/src/main/java/cn/itedus/ssyx/client/local/LocalUserClient.java
+/app/ssyx-monolith/src/main/java/cn/itedus/ssyx/mq/RedisMqConsumer.java
+/app/ssyx-monolith/src/main/java/cn/itedus/ssyx/config/CorsConfig.java
+/app/ssyx-monolith/src/main/java/cn/itedus/ssyx/MonolithApplication.java
+/app/ssyx-monolith/src/main/java/cn/itedus/ssyx/client/local/LocalOrderClient.java
+/app/ssyx-monolith/src/main/java/cn/itedus/ssyx/client/local/LocalProductClient.java

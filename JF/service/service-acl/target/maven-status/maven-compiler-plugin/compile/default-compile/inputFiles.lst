@@ -1,0 +1,14 @@
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/helper/PermissionHelper.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/service/PermissionService.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/controller/PermissionAdminController.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/controller/AdminController.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/service/impl/PermissionServiceImpl.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/controller/RoleController.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/mapper/PermissionMapper.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/service/RoleService.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/service/AdminService.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/service/impl/RoleServiceImpl.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/mapper/RoleMapper.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/service/impl/AdminServiceImpl.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/controller/IndexController.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/mapper/AdminMapper.java

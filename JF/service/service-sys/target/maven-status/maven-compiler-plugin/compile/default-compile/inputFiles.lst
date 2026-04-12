@@ -1,0 +1,12 @@
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/service/impl/RegionWareServiceImpl.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/service/impl/WareServiceImpl.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/controller/RegionController.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/service/RegionService.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/service/impl/RegionServiceImpl.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/controller/RegionWareController.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/mapper/RegionWareMapper.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/mapper/WareMapper.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/service/WareService.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/controller/WareController.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/service/RegionWareService.java
+/app/service/service-sys/src/main/java/cn/itedus/ssyx/sys/mapper/RegionMapper.java

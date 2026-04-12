@@ -1,0 +1,8 @@
+/app/service/service-payment/src/main/java/cn/itedus/ssyx/payment/utils/ConstantPropertiesUtils.java
+/app/service/service-payment/src/main/java/cn/itedus/ssyx/payment/mapper/PaymentInfoMapper.java
+/app/service/service-payment/src/main/java/cn/itedus/ssyx/payment/service/WeixinService.java
+/app/service/service-payment/src/main/java/cn/itedus/ssyx/payment/service/PaymentInfoService.java
+/app/service/service-payment/src/main/java/cn/itedus/ssyx/payment/utils/HttpClient.java
+/app/service/service-payment/src/main/java/cn/itedus/ssyx/payment/controller/WeixinController.java
+/app/service/service-payment/src/main/java/cn/itedus/ssyx/payment/service/impl/WeixinServiceImpl.java
+/app/service/service-payment/src/main/java/cn/itedus/ssyx/payment/service/impl/PaymentInfoServiceImpl.java

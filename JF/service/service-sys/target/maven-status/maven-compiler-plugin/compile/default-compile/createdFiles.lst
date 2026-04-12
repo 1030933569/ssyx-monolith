@@ -1,0 +1,12 @@
+cn/itedus/ssyx/sys/mapper/WareMapper.class
+cn/itedus/ssyx/sys/service/impl/WareServiceImpl.class
+cn/itedus/ssyx/sys/service/RegionWareService.class
+cn/itedus/ssyx/sys/controller/WareController.class
+cn/itedus/ssyx/sys/service/RegionService.class
+cn/itedus/ssyx/sys/controller/RegionWareController.class
+cn/itedus/ssyx/sys/service/impl/RegionWareServiceImpl.class
+cn/itedus/ssyx/sys/mapper/RegionMapper.class
+cn/itedus/ssyx/sys/controller/RegionController.class
+cn/itedus/ssyx/sys/service/WareService.class
+cn/itedus/ssyx/sys/mapper/RegionWareMapper.class
+cn/itedus/ssyx/sys/service/impl/RegionServiceImpl.class

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="380" viewBox="0 0 1080 380">
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#444"/></marker></defs>
+  <rect width="1080" height="380" fill="#fff"/>
+  <style>
+    text{font-family:"Microsoft YaHei","SimSun",sans-serif;font-size:16px;fill:#222}
+    .title{font-size:22px;font-weight:700}
+    .node{fill:#f7fbff;stroke:#2f6f9f;stroke-width:2}
+    .store{fill:#fffaf4;stroke:#9f6b2f;stroke-width:2}
+    .line{stroke:#444;stroke-width:1.8;fill:none;marker-end:url(#arrow)}
+  </style>
+  <text x="540" y="36" text-anchor="middle" class="title">支付处理与状态流转实现流程图</text>
+  <rect x="45" y="120" width="150" height="70" rx="8" class="node"/><text x="120" y="162" text-anchor="middle">发起支付</text>
+  <rect x="255" y="120" width="170" height="70" rx="8" class="store"/><text x="340" y="151" text-anchor="middle">生成/读取</text><text x="340" y="174" text-anchor="middle">payment_info</text>
+  <rect x="485" y="120" width="160" height="70" rx="8" class="node"/><text x="565" y="151" text-anchor="middle">查询支付状态</text><text x="565" y="174" text-anchor="middle">或模拟支付</text>
+  <rect x="705" y="120" width="150" height="70" rx="8" class="store"/><text x="780" y="151" text-anchor="middle">更新支付记录</text><text x="780" y="174" text-anchor="middle">PAID</text>
+  <rect x="915" y="120" width="130" height="70" rx="8" class="node"/><text x="980" y="162" text-anchor="middle">发送消息</text>
+  <rect x="270" y="270" width="170" height="60" rx="8" class="node"/><text x="355" y="306" text-anchor="middle">推进订单状态</text>
+  <rect x="520" y="270" width="170" height="60" rx="8" class="node"/><text x="605" y="306" text-anchor="middle">库存实扣</text>
+  <rect x="770" y="270" width="170" height="60" rx="8" class="node"/><text x="855" y="306" text-anchor="middle">清理购物车</text>
+  <line x1="195" y1="155" x2="255" y2="155" class="line"/>
+  <line x1="425" y1="155" x2="485" y2="155" class="line"/>
+  <line x1="645" y1="155" x2="705" y2="155" class="line"/>
+  <line x1="855" y1="155" x2="915" y2="155" class="line"/>
+  <line x1="980" y1="190" x2="355" y2="270" class="line"/>
+  <line x1="440" y1="300" x2="520" y2="300" class="line"/>
+  <line x1="690" y1="300" x2="770" y2="300" class="line"/>
+</svg>

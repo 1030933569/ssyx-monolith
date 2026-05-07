@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="760" viewBox="0 0 430 760">
+  <rect width="430" height="760" fill="#eef2f5"/>
+  <style>text{font-family:"Microsoft YaHei","SimSun",sans-serif;fill:#1f2933}.card{fill:#fff;stroke:#d7dde3}.btn{fill:#2f6f9f}</style>
+  <rect x="25" y="30" width="380" height="700" rx="28" fill="#fff"/>
+  <text x="55" y="82" font-size="22">确认订单</text>
+  <rect x="55" y="110" width="320" height="90" rx="12" class="card"/>
+  <text x="75" y="145" font-size="16">提货点：幸福小区</text><text x="75" y="175" font-size="15">地址：幸福路1号便利店</text>
+  <rect x="55" y="225" width="320" height="150" rx="12" class="card"/>
+  <text x="75" y="262" font-size="16">精品苹果 x2</text><text x="290" y="262" font-size="16">￥19.80</text>
+  <text x="75" y="305" font-size="16">新鲜鸡蛋 x1</text><text x="290" y="305" font-size="16">￥12.80</text>
+  <rect x="55" y="405" width="320" height="140" rx="12" class="card"/>
+  <text x="75" y="440" font-size="16">商品金额</text><text x="290" y="440" font-size="16">￥32.60</text>
+  <text x="75" y="480" font-size="16">优惠金额</text><text x="290" y="480" font-size="16">-￥3.00</text>
+  <text x="75" y="520" font-size="17">实付金额</text><text x="285" y="520" font-size="18" fill="#d64545">￥29.60</text>
+  <rect x="55" y="650" width="320" height="48" rx="24" class="btn"/>
+  <text x="215" y="681" text-anchor="middle" font-size="17" fill="#fff">提交订单并支付</text>
+</svg>

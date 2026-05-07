@@ -1,0 +1,31 @@
+flowchart LR
+    user["普通用户"]
+
+    subgraph system["社区团购微信小程序端"]
+        login(("用户登录"))
+        pickup(("选择提货点"))
+        browse(("商品浏览"))
+        cart(("加入购物车"))
+        submit(("提交订单"))
+        pay(("完成支付"))
+        order(("查看订单"))
+        category(("查看商品分类"))
+        search(("搜索商品"))
+        detail(("查看商品详情"))
+        adjust(("修改购物车数量"))
+        settle(("勾选结算"))
+    end
+
+    user --- login
+    user --- pickup
+    user --- browse
+    user --- cart
+    user --- submit
+    user --- pay
+    user --- order
+
+    browse --- category
+    browse --- search
+    browse --- detail
+    cart --- adjust
+    cart --- settle

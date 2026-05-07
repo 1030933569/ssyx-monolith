@@ -1,0 +1,30 @@
+flowchart LR
+    admin["后台管理员"]
+
+    subgraph system["社区团购后台管理端"]
+        login(("后台登录"))
+        account(("后台账号管理"))
+        category(("商品分类管理"))
+        sku(("商品信息管理"))
+        publish(("商品上下架"))
+        stock(("库存维护"))
+        region(("区域管理"))
+        ware(("仓库管理"))
+        pickup(("提货点管理"))
+        order(("订单管理"))
+        payment(("支付记录管理"))
+        deliver(("发货管理"))
+    end
+
+    admin --- login
+    admin --- account
+    admin --- category
+    admin --- sku
+    admin --- publish
+    admin --- stock
+    admin --- region
+    admin --- ware
+    admin --- pickup
+    admin --- order
+    admin --- payment
+    admin --- deliver

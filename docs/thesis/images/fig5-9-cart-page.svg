@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="760" viewBox="0 0 430 760">
+  <rect width="430" height="760" fill="#eef2f5"/>
+  <style>text{font-family:"Microsoft YaHei","SimSun",sans-serif;fill:#1f2933}.card{fill:#fff;stroke:#d7dde3}.btn{fill:#2f6f9f}</style>
+  <rect x="25" y="30" width="380" height="700" rx="28" fill="#fff"/>
+  <text x="55" y="82" font-size="22">购物车</text>
+  <rect x="55" y="115" width="320" height="115" rx="12" class="card"/>
+  <circle cx="78" cy="172" r="10" fill="#2f6f9f"/><rect x="100" y="135" width="70" height="70" rx="8" fill="#d9ead3"/>
+  <text x="190" y="158" font-size="16">精品苹果</text><text x="190" y="188" font-size="16" fill="#d64545">￥9.90</text><text x="295" y="188" font-size="16">- 2 +</text>
+  <rect x="55" y="255" width="320" height="115" rx="12" class="card"/>
+  <circle cx="78" cy="312" r="10" fill="#2f6f9f"/><rect x="100" y="275" width="70" height="70" rx="8" fill="#fde2e2"/>
+  <text x="190" y="298" font-size="16">新鲜鸡蛋</text><text x="190" y="328" font-size="16" fill="#d64545">￥12.80</text><text x="295" y="328" font-size="16">- 1 +</text>
+  <rect x="25" y="655" width="380" height="75" fill="#f8fafc"/>
+  <text x="60" y="700" font-size="16">全选</text><text x="185" y="700" font-size="17">合计：￥32.60</text>
+  <rect x="295" y="675" width="90" height="38" rx="19" class="btn"/><text x="340" y="700" text-anchor="middle" font-size="15" fill="#fff">结算</text>
+</svg>

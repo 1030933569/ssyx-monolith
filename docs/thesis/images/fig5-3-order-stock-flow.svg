@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430">
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#444"/></marker></defs>
+  <rect width="1120" height="430" fill="#fff"/>
+  <style>
+    text{font-family:"Microsoft YaHei","SimSun",sans-serif;font-size:16px;fill:#222}
+    .title{font-size:22px;font-weight:700}
+    .node{fill:#f7fbff;stroke:#2f6f9f;stroke-width:2}
+    .store{fill:#fffaf4;stroke:#9f6b2f;stroke-width:2}
+    .line{stroke:#444;stroke-width:1.8;fill:none;marker-end:url(#arrow)}
+  </style>
+  <text x="560" y="36" text-anchor="middle" class="title">订单提交与库存控制实现流程图</text>
+  <rect x="40" y="130" width="145" height="65" rx="8" class="node"/><text x="112" y="169" text-anchor="middle">订单确认</text>
+  <rect x="245" y="130" width="150" height="65" rx="8" class="store"/><text x="320" y="158" text-anchor="middle">Redis 保存</text><text x="320" y="181" text-anchor="middle">订单防重号</text>
+  <rect x="455" y="130" width="150" height="65" rx="8" class="node"/><text x="530" y="158" text-anchor="middle">Lua 脚本</text><text x="530" y="181" text-anchor="middle">防重校验</text>
+  <rect x="665" y="130" width="160" height="65" rx="8" class="node"/><text x="745" y="158" text-anchor="middle">Redisson</text><text x="745" y="181" text-anchor="middle">库存锁定</text>
+  <rect x="885" y="130" width="170" height="65" rx="8" class="store"/><text x="970" y="158" text-anchor="middle">写入订单主表</text><text x="970" y="181" text-anchor="middle">和订单明细</text>
+  <rect x="270" y="285" width="180" height="65" rx="8" class="node"/><text x="360" y="313" text-anchor="middle">库存不足</text><text x="360" y="336" text-anchor="middle">返回下单失败</text>
+  <rect x="665" y="285" width="180" height="65" rx="8" class="node"/><text x="755" y="313" text-anchor="middle">发送清理购物车</text><text x="755" y="336" text-anchor="middle">等后续消息</text>
+  <line x1="185" y1="162" x2="245" y2="162" class="line"/>
+  <line x1="395" y1="162" x2="455" y2="162" class="line"/>
+  <line x1="605" y1="162" x2="665" y2="162" class="line"/>
+  <line x1="825" y1="162" x2="885" y2="162" class="line"/>
+  <line x1="745" y1="195" x2="380" y2="285" class="line"/>
+  <line x1="970" y1="195" x2="775" y2="285" class="line"/>
+</svg>

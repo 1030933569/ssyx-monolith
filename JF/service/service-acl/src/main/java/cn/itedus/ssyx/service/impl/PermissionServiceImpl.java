@@ -2,15 +2,21 @@ package cn.itedus.ssyx.service.impl;
 
 import cn.itedus.ssyx.helper.PermissionHelper;
 import cn.itedus.ssyx.mapper.PermissionMapper;
+import cn.itedus.ssyx.mapper.RolePermissionMapper;
 import cn.itedus.ssyx.model.acl.Permission;
+import cn.itedus.ssyx.model.acl.RolePermission;
 import cn.itedus.ssyx.service.PermissionService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author: Guanghao Wei
@@ -21,6 +27,9 @@ import java.util.List;
 public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permission> implements PermissionService {
     @Autowired
     private PermissionMapper permissionMapper;
+
+    @Autowired
+    private RolePermissionMapper rolePermissionMapper;
 
     @Override
     public List<Permission> queryAllMenu() {
@@ -56,5 +65,43 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
             idList.add(item.getId());
             this.selectChildListById(item.getId(), idList);
         });
+    }
+
+    @Override
+    public List<Permission> selectAllMenu(Long roleId) {
+        List<Permission> permissionList = permissionMapper.selectList(null);
+        List<RolePermission> rolePermissionList = rolePermissionMapper.selectList(
+                new LambdaQueryWrapper<RolePermission>().eq(RolePermission::getRoleId, roleId));
+
+        Set<Long> permissionIdSet = new HashSet<>();
+        for (RolePermission rolePermission : rolePermissionList) {
+            permissionIdSet.add(rolePermission.getPermissionId());
+        }
+
+        for (Permission permission : permissionList) {
+            permission.setSelect(permissionIdSet.contains(permission.getId()));
+        }
+        return PermissionHelper.builder(permissionList);
+    }
+
+    @Override
+    public void saveRolePermission(Long roleId, String permissionId) {
+        rolePermissionMapper.delete(new LambdaQueryWrapper<RolePermission>()
+                .eq(RolePermission::getRoleId, roleId));
+
+        if (!StringUtils.hasText(permissionId)) {
+            return;
+        }
+
+        String[] permissionIds = permissionId.split(",");
+        for (String idText : permissionIds) {
+            if (!StringUtils.hasText(idText)) {
+                continue;
+            }
+            RolePermission rolePermission = new RolePermission();
+            rolePermission.setRoleId(roleId);
+            rolePermission.setPermissionId(Long.valueOf(idText.trim()));
+            rolePermissionMapper.insert(rolePermission);
+        }
     }
 }

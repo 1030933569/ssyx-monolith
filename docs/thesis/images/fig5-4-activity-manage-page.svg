@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+  <rect width="980" height="560" fill="#f4f6f8"/>
+  <style>text{font-family:"Microsoft YaHei","SimSun",sans-serif;fill:#1f2933}.panel{fill:#fff;stroke:#d7dde3}.btn{fill:#2f6f9f}.tag{fill:#fff4e6;stroke:#d88a2d}.th{fill:#edf2f7}</style>
+  <rect x="45" y="40" width="890" height="480" rx="8" class="panel"/>
+  <text x="75" y="82" font-size="22">活动与优惠券管理</text>
+  <rect x="75" y="110" width="130" height="40" rx="4" class="btn"/><text x="140" y="136" text-anchor="middle" fill="#fff" font-size="15">新增活动</text>
+  <rect x="220" y="110" width="130" height="40" rx="4" fill="#4b8f5a"/><text x="285" y="136" text-anchor="middle" fill="#fff" font-size="15">新增优惠券</text>
+  <rect x="75" y="180" width="830" height="42" class="th"/>
+  <text x="105" y="207" font-size="15">名称</text><text x="295" y="207" font-size="15">类型</text><text x="435" y="207" font-size="15">时间</text><text x="650" y="207" font-size="15">状态</text><text x="760" y="207" font-size="15">操作</text>
+  <rect x="95" y="245" width="120" height="34" rx="16" class="tag"/><text x="155" y="268" text-anchor="middle" font-size="14">新人专享</text>
+  <text x="295" y="268" font-size="14">新人商品</text><text x="435" y="268" font-size="14">2025-05-01 至 2025-06-01</text><text x="650" y="268" font-size="14">启用</text><text x="760" y="268" font-size="14">修改 删除</text>
+  <rect x="95" y="315" width="120" height="34" rx="16" class="tag"/><text x="155" y="338" text-anchor="middle" font-size="14">满减活动</text>
+  <text x="295" y="338" font-size="14">促销活动</text><text x="435" y="338" font-size="14">2025-05-20 至 2025-05-31</text><text x="650" y="338" font-size="14">启用</text><text x="760" y="338" font-size="14">修改 删除</text>
+</svg>

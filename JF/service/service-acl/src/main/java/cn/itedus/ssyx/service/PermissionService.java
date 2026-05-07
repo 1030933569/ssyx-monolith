@@ -27,4 +27,8 @@ public interface PermissionService extends IService<Permission> {
      * @param id 删除菜单ID
      */
     boolean removeChildById(Long id);
+
+    List<Permission> selectAllMenu(Long roleId);
+
+    void saveRolePermission(Long roleId, String permissionId);
 }

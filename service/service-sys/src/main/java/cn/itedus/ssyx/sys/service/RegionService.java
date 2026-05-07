@@ -17,4 +17,6 @@ public interface RegionService extends IService<Region> {
      * @return 区域信息列表
      */
     List<Region> findRegionByKeyword(String keyWord);
+
+    List<Region> findByParentId(Long parentId);
 }

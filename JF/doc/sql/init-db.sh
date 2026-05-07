@@ -28,7 +28,7 @@ for sql_file in "${SQL_FILES[@]}"; do
       -e 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g' \
       -e 's/COLLATE=utf8mb4_0900_ai_ci/COLLATE=utf8mb4_general_ci/g' \
       -e "s/ \/\*!80016 DEFAULT ENCRYPTION='N' \*\///g" \
-      "$filepath" | mysql -u root -p"$MYSQL_ROOT_PASSWORD" "$DB_NAME"
+      "$filepath" | mysql --default-character-set=utf8mb4 -u root -p"$MYSQL_ROOT_PASSWORD" "$DB_NAME"
     echo "--- 完成: $sql_file ---"
   else
     echo "!!! 跳过: $sql_file (不存在)"

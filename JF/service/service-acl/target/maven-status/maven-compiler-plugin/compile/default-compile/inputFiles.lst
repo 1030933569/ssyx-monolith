@@ -11,4 +11,6 @@
 /app/service/service-acl/src/main/java/cn/itedus/ssyx/mapper/RoleMapper.java
 /app/service/service-acl/src/main/java/cn/itedus/ssyx/service/impl/AdminServiceImpl.java
 /app/service/service-acl/src/main/java/cn/itedus/ssyx/controller/IndexController.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/mapper/RolePermissionMapper.java
+/app/service/service-acl/src/main/java/cn/itedus/ssyx/mapper/AdminRoleMapper.java
 /app/service/service-acl/src/main/java/cn/itedus/ssyx/mapper/AdminMapper.java

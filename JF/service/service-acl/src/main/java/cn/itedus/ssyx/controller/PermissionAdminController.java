@@ -51,8 +51,18 @@ public class PermissionAdminController {
         return Result.ok();
     }
 
+    @ApiOperation("鑾峰彇瑙掕壊鏉冮檺")
+    @GetMapping("toAssign/{roleId}")
+    public Result toAssign(@PathVariable("roleId") Long roleId) {
+        List<Permission> list = permissionService.selectAllMenu(roleId);
+        return Result.ok(list);
+    }
 
-
-
-
+    @ApiOperation("缁欒鑹插垎閰嶆潈闄?")
+    @PostMapping("doAssign")
+    public Result doAssign(@RequestParam("roleId") Long roleId,
+                           @RequestParam(value = "permissionId", required = false) String permissionId) {
+        permissionService.saveRolePermission(roleId, permissionId);
+        return Result.ok();
+    }
 }

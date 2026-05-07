@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+  <rect width="980" height="560" fill="#f4f6f8"/>
+  <style>text{font-family:"Microsoft YaHei","SimSun",sans-serif;fill:#1f2933}.panel{fill:#fff;stroke:#d7dde3}.btn{fill:#2f6f9f}.th{fill:#edf2f7}</style>
+  <rect x="45" y="40" width="890" height="480" rx="8" class="panel"/>
+  <text x="75" y="82" font-size="22">提货点与仓库管理</text>
+  <rect x="75" y="110" width="150" height="40" rx="4" class="btn"/><text x="150" y="136" text-anchor="middle" fill="#fff" font-size="15">新增提货点</text>
+  <rect x="245" y="110" width="150" height="40" rx="4" fill="#4b8f5a"/><text x="320" y="136" text-anchor="middle" fill="#fff" font-size="15">新增仓库</text>
+  <rect x="75" y="180" width="830" height="42" class="th"/>
+  <text x="105" y="207" font-size="15">提货点</text><text x="280" y="207" font-size="15">联系人</text><text x="410" y="207" font-size="15">电话</text><text x="555" y="207" font-size="15">仓库</text><text x="710" y="207" font-size="15">状态</text><text x="805" y="207" font-size="15">操作</text>
+  <g font-size="14">
+    <text x="105" y="255">幸福小区</text><text x="280" y="255">张团长</text><text x="410" y="255">138****0001</text><text x="555" y="255">一号仓</text><text x="710" y="255">启用</text><text x="805" y="255">修改</text>
+    <text x="105" y="305">中心门店</text><text x="280" y="305">李团长</text><text x="410" y="305">138****0002</text><text x="555" y="305">二号仓</text><text x="710" y="305">启用</text><text x="805" y="305">修改</text>
+  </g>
+</svg>

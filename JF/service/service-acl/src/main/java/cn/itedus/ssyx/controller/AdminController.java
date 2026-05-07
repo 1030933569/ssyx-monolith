@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -71,6 +72,21 @@ public class AdminController {
     @DeleteMapping("batchRemove")
     public Result batchRemoveAdmin(@RequestBody List<Long> idList) {
         adminService.removeByIds(idList);
+        return Result.ok();
+    }
+
+    @ApiOperation("鑾峰彇鐢ㄦ埛瑙掕壊")
+    @GetMapping("toAssign/{adminId}")
+    public Result toAssign(@PathVariable("adminId") Long adminId) {
+        Map<String, Object> roleMap = adminService.getRolesByAdminId(adminId);
+        return Result.ok(roleMap);
+    }
+
+    @ApiOperation("缁欑敤鎴峰垎閰嶈鑹?")
+    @PostMapping("doAssign")
+    public Result doAssign(@RequestParam("adminId") Long adminId,
+                           @RequestParam(value = "roleId", required = false) String roleId) {
+        adminService.assignRoles(adminId, roleId);
         return Result.ok();
     }
 }

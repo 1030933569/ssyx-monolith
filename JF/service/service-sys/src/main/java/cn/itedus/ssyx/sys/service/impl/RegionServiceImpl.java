@@ -27,4 +27,12 @@ public class RegionServiceImpl extends ServiceImpl<RegionMapper, Region> impleme
         List<Region> regionList = regionMapper.selectList(lambdaQueryWrapper);
         return regionList;
     }
+
+    @Override
+    public List<Region> findByParentId(Long parentId) {
+        LambdaQueryWrapper<Region> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Region::getParentId, parentId);
+        lambdaQueryWrapper.orderByAsc(Region::getId);
+        return regionMapper.selectList(lambdaQueryWrapper);
+    }
 }

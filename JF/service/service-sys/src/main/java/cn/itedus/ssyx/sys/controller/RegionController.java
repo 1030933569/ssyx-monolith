@@ -24,4 +24,9 @@ public class RegionController {
     public Result findRegionByKeyword(@PathVariable("keyword") String keyWord) {
         return Result.ok(regionService.findRegionByKeyword(keyWord));
     }
+
+    @GetMapping("findByParentId/{parentId}")
+    public Result findByParentId(@PathVariable("parentId") Long parentId) {
+        return Result.ok(regionService.findByParentId(parentId));
+    }
 }

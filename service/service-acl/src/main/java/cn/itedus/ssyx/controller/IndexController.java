@@ -31,7 +31,7 @@ public class IndexController {
     @GetMapping("info")
     public Result info() {
         Map<String, Object> map = new HashMap<>();
-        map.put("name", "Komorebi");
+        map.put("name", "admin");
         map.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
         return Result.ok(map);
     }

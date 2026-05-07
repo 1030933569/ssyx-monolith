@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="760" viewBox="0 0 430 760">
+  <rect width="430" height="760" fill="#eef2f5"/>
+  <style>text{font-family:"Microsoft YaHei","SimSun",sans-serif;fill:#1f2933}.card{fill:#fff;stroke:#d7dde3}.btn{fill:#2f6f9f}</style>
+  <rect x="25" y="30" width="380" height="700" rx="28" fill="#fff"/>
+  <text x="55" y="82" font-size="22">我的订单</text>
+  <rect x="55" y="115" width="320" height="135" rx="12" class="card"/>
+  <text x="75" y="150" font-size="15">订单号：20250501001</text><text x="290" y="150" font-size="15" fill="#2f6f9f">已支付</text>
+  <text x="75" y="188" font-size="16">精品苹果等 2 件商品</text><text x="75" y="222" font-size="16" fill="#d64545">实付：￥29.60</text>
+  <rect x="55" y="280" width="320" height="135" rx="12" class="card"/>
+  <text x="75" y="315" font-size="15">订单号：20250501002</text><text x="290" y="315" font-size="15" fill="#d88a2d">待支付</text>
+  <text x="75" y="353" font-size="16">有机蔬菜等 1 件商品</text><text x="75" y="387" font-size="16" fill="#d64545">实付：￥15.80</text>
+  <rect x="55" y="445" width="320" height="135" rx="12" class="card"/>
+  <text x="75" y="480" font-size="15">订单号：20250501003</text><text x="290" y="480" font-size="15" fill="#4b8f5a">已完成</text>
+  <text x="75" y="518" font-size="16">粮油礼包等 3 件商品</text><text x="75" y="552" font-size="16" fill="#d64545">实付：￥68.90</text>
+</svg>

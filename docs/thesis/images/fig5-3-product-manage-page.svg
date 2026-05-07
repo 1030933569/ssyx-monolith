@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+  <rect width="980" height="560" fill="#f4f6f8"/>
+  <style>text{font-family:"Microsoft YaHei","SimSun",sans-serif;fill:#1f2933}.panel{fill:#fff;stroke:#d7dde3}.btn{fill:#2f6f9f}.th{fill:#edf2f7}</style>
+  <rect x="40" y="35" width="900" height="490" rx="8" class="panel"/>
+  <text x="70" y="78" font-size="22">商品管理</text>
+  <rect x="70" y="105" width="210" height="38" rx="4" fill="#fff" stroke="#cfd8e3"/><text x="88" y="130" font-size="14">商品名称</text>
+  <rect x="300" y="105" width="130" height="38" rx="4" class="btn"/><text x="365" y="130" text-anchor="middle" font-size="15" fill="#fff">查询</text>
+  <rect x="450" y="105" width="130" height="38" rx="4" fill="#4b8f5a"/><text x="515" y="130" text-anchor="middle" font-size="15" fill="#fff">新增商品</text>
+  <rect x="70" y="170" width="840" height="42" class="th"/>
+  <text x="95" y="197" font-size="15">编号</text><text x="190" y="197" font-size="15">商品名称</text><text x="360" y="197" font-size="15">价格</text><text x="470" y="197" font-size="15">库存</text><text x="600" y="197" font-size="15">状态</text><text x="735" y="197" font-size="15">操作</text>
+  <g font-size="14">
+    <text x="95" y="245">1</text><text x="190" y="245">精品苹果</text><text x="360" y="245">9.90</text><text x="470" y="245">120</text><text x="600" y="245">上架</text><text x="735" y="245">查看 修改 下架</text>
+    <text x="95" y="295">2</text><text x="190" y="295">新鲜鸡蛋</text><text x="360" y="295">12.80</text><text x="470" y="295">85</text><text x="600" y="295">上架</text><text x="735" y="295">查看 修改 下架</text>
+    <text x="95" y="345">3</text><text x="190" y="345">有机蔬菜</text><text x="360" y="345">5.60</text><text x="470" y="345">60</text><text x="600" y="345">下架</text><text x="735" y="345">查看 修改 删除</text>
+  </g>
+</svg>

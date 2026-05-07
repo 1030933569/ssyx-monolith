@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+  <defs>
+    <style>
+      text{font-family:"Microsoft YaHei","SimSun",Arial,sans-serif;fill:#12213a}
+      .title{font-size:24px;font-weight:700}
+      .label{font-size:16px}
+      .page{fill:#fff;stroke:#dbe4ef;stroke-width:1}
+      .boundary{fill:#f8fbff;stroke:#94a3b8;stroke-width:1.6;stroke-dasharray:8 6}
+      .case{fill:#edf6ff;stroke:#4b7fc6;stroke-width:1.8}
+      .actor{fill:none;stroke:#334155;stroke-width:2.2;stroke-linecap:round}
+      .assoc{fill:none;stroke:#64748b;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="998" height="698" class="page"/>
+  <text x="500" y="42" text-anchor="middle" class="title">后台管理端主要用例图</text>
+
+  <g transform="translate(70,235)">
+    <circle cx="50" cy="34" r="24" class="actor"/>
+    <path d="M50 58 L50 130" class="actor"/>
+    <path d="M12 88 L88 88" class="actor"/>
+    <path d="M50 130 L20 190" class="actor"/>
+    <path d="M50 130 L80 190" class="actor"/>
+    <text x="50" y="230" text-anchor="middle" class="label">后台管理员</text>
+  </g>
+
+  <rect x="230" y="82" width="720" height="560" rx="8" class="boundary"/>
+  <text x="590" y="114" text-anchor="middle" class="label">社区团购后台管理端</text>
+
+  <path d="M158 323 H250" class="assoc"/>
+  <path d="M250 136 V614 H575 V136" class="assoc"/>
+
+  <ellipse cx="405" cy="136" rx="105" ry="29" class="case"/>
+  <text x="405" y="142" text-anchor="middle" class="label">后台登录</text>
+  <path d="M250 136 H300" class="assoc"/>
+
+  <ellipse cx="405" cy="223" rx="105" ry="29" class="case"/>
+  <text x="405" y="229" text-anchor="middle" class="label">后台账号管理</text>
+  <path d="M250 223 H300" class="assoc"/>
+
+  <ellipse cx="405" cy="310" rx="105" ry="29" class="case"/>
+  <text x="405" y="316" text-anchor="middle" class="label">商品分类管理</text>
+  <path d="M250 310 H300" class="assoc"/>
+
+  <ellipse cx="405" cy="397" rx="105" ry="29" class="case"/>
+  <text x="405" y="403" text-anchor="middle" class="label">商品信息管理</text>
+  <path d="M250 397 H300" class="assoc"/>
+
+  <ellipse cx="405" cy="484" rx="105" ry="29" class="case"/>
+  <text x="405" y="490" text-anchor="middle" class="label">商品上下架</text>
+  <path d="M250 484 H300" class="assoc"/>
+
+  <ellipse cx="405" cy="570" rx="105" ry="29" class="case"/>
+  <text x="405" y="576" text-anchor="middle" class="label">库存维护</text>
+  <path d="M250 570 H300" class="assoc"/>
+
+  <ellipse cx="735" cy="136" rx="105" ry="29" class="case"/>
+  <text x="735" y="142" text-anchor="middle" class="label">区域管理</text>
+  <path d="M575 136 H630" class="assoc"/>
+
+  <ellipse cx="735" cy="223" rx="105" ry="29" class="case"/>
+  <text x="735" y="229" text-anchor="middle" class="label">仓库管理</text>
+  <path d="M575 223 H630" class="assoc"/>
+
+  <ellipse cx="735" cy="310" rx="105" ry="29" class="case"/>
+  <text x="735" y="316" text-anchor="middle" class="label">提货点管理</text>
+  <path d="M575 310 H630" class="assoc"/>
+
+  <ellipse cx="735" cy="397" rx="105" ry="29" class="case"/>
+  <text x="735" y="403" text-anchor="middle" class="label">订单管理</text>
+  <path d="M575 397 H630" class="assoc"/>
+
+  <ellipse cx="735" cy="484" rx="105" ry="29" class="case"/>
+  <text x="735" y="490" text-anchor="middle" class="label">支付记录管理</text>
+  <path d="M575 484 H630" class="assoc"/>
+
+  <ellipse cx="735" cy="570" rx="105" ry="29" class="case"/>
+  <text x="735" y="576" text-anchor="middle" class="label">发货管理</text>
+  <path d="M575 570 H630" class="assoc"/>
+</svg>

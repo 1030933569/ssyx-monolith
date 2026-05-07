@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="760" viewBox="0 0 430 760">
+  <rect width="430" height="760" fill="#eef2f5"/>
+  <style>text{font-family:"Microsoft YaHei","SimSun",sans-serif;fill:#1f2933}.card{fill:#fff;stroke:#d7dde3}.btn{fill:#2f6f9f}</style>
+  <rect x="25" y="30" width="380" height="700" rx="28" fill="#fff"/>
+  <text x="55" y="82" font-size="18">幸福小区自提点</text>
+  <rect x="55" y="105" width="320" height="120" rx="12" fill="#dbeafe"/>
+  <text x="215" y="172" text-anchor="middle" font-size="24">社区团购</text>
+  <text x="60" y="260" font-size="18">商品分类</text>
+  <rect x="60" y="285" width="70" height="70" rx="12" class="card"/><text x="95" y="328" text-anchor="middle" font-size="14">蔬菜</text>
+  <rect x="145" y="285" width="70" height="70" rx="12" class="card"/><text x="180" y="328" text-anchor="middle" font-size="14">水果</text>
+  <rect x="230" y="285" width="70" height="70" rx="12" class="card"/><text x="265" y="328" text-anchor="middle" font-size="14">粮油</text>
+  <rect x="315" y="285" width="60" height="70" rx="12" class="card"/><text x="345" y="328" text-anchor="middle" font-size="14">日用</text>
+  <text x="60" y="395" font-size="18">热门商品</text>
+  <rect x="60" y="420" width="140" height="165" rx="10" class="card"/><rect x="80" y="440" width="100" height="75" rx="8" fill="#d9ead3"/><text x="130" y="545" text-anchor="middle" font-size="15">精品苹果</text><text x="130" y="570" text-anchor="middle" fill="#d64545" font-size="16">￥9.90</text>
+  <rect x="235" y="420" width="140" height="165" rx="10" class="card"/><rect x="255" y="440" width="100" height="75" rx="8" fill="#fde2e2"/><text x="305" y="545" text-anchor="middle" font-size="15">新鲜鸡蛋</text><text x="305" y="570" text-anchor="middle" fill="#d64545" font-size="16">￥12.80</text>
+  <rect x="25" y="660" width="380" height="70" rx="0" fill="#f8fafc"/>
+  <text x="75" y="702" text-anchor="middle" font-size="15">首页</text><text x="165" y="702" text-anchor="middle" font-size="15">分类</text><text x="255" y="702" text-anchor="middle" font-size="15">购物车</text><text x="345" y="702" text-anchor="middle" font-size="15">我的</text>
+</svg>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760">
+  <defs>
+    <style>
+      text{font-family:"Microsoft YaHei","SimSun",Arial,sans-serif;fill:#12213a}
+      .title{font-size:24px;font-weight:700}
+      .label{font-size:16px}
+      .page{fill:#fff;stroke:#dbe4ef;stroke-width:1}
+      .root{fill:#edf6ff;stroke:#4b7fc6;stroke-width:1.9}
+      .group{fill:#f8fafc;stroke:#94a3b8;stroke-width:1.7}
+      .node{fill:#fff;stroke:#4b7fc6;stroke-width:1.6}
+      .line{fill:none;stroke:#64748b;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="1278" height="758" class="page"/>
+  <text x="640" y="42" text-anchor="middle" class="title">系统功能结构图</text>
+
+  <rect x="480" y="78" width="320" height="56" rx="8" class="root"/>
+  <text x="640" y="113" text-anchor="middle" class="label">社区团购系统</text>
+
+  <rect x="70" y="210" width="520" height="56" rx="8" class="group"/>
+  <text x="330" y="245" text-anchor="middle" class="label">用户端功能</text>
+  <rect x="690" y="210" width="520" height="56" rx="8" class="group"/>
+  <text x="950" y="245" text-anchor="middle" class="label">后台管理端功能</text>
+
+  <path d="M640 134 V170" class="line"/>
+  <path d="M330 170 H950" class="line"/>
+  <path d="M330 170 V210" class="line"/>
+  <path d="M950 170 V210" class="line"/>
+
+  <path d="M330 266 V304" class="line"/>
+  <path d="M130 304 H530" class="line"/>
+  <path d="M130 304 V340" class="line"/>
+  <path d="M263 304 V340" class="line"/>
+  <path d="M397 304 V340" class="line"/>
+  <path d="M530 304 V340" class="line"/>
+
+  <rect x="70" y="340" width="120" height="46" rx="6" class="node"/>
+  <text x="130" y="369" text-anchor="middle" class="label">用户登录</text>
+  <rect x="203" y="340" width="120" height="46" rx="6" class="node"/>
+  <text x="263" y="369" text-anchor="middle" class="label">提货点选择</text>
+  <rect x="337" y="340" width="120" height="46" rx="6" class="node"/>
+  <text x="397" y="369" text-anchor="middle" class="label">商品浏览</text>
+  <rect x="470" y="340" width="120" height="46" rx="6" class="node"/>
+  <text x="530" y="369" text-anchor="middle" class="label">商品搜索</text>
+
+  <path d="M330 386 V414" class="line"/>
+  <path d="M197 414 H463" class="line"/>
+  <path d="M197 414 V450" class="line"/>
+  <path d="M330 414 V450" class="line"/>
+  <path d="M463 414 V450" class="line"/>
+
+  <rect x="137" y="450" width="120" height="46" rx="6" class="node"/>
+  <text x="197" y="479" text-anchor="middle" class="label">购物车管理</text>
+  <rect x="270" y="450" width="120" height="46" rx="6" class="node"/>
+  <text x="330" y="479" text-anchor="middle" class="label">订单支付</text>
+  <rect x="403" y="450" width="120" height="46" rx="6" class="node"/>
+  <text x="463" y="479" text-anchor="middle" class="label">订单查询</text>
+
+  <path d="M950 266 V304" class="line"/>
+  <path d="M760 304 H1165" class="line"/>
+  <path d="M760 304 V340" class="line"/>
+  <path d="M895 304 V340" class="line"/>
+  <path d="M1030 304 V340" class="line"/>
+  <path d="M1165 304 V340" class="line"/>
+
+  <rect x="697" y="340" width="126" height="46" rx="6" class="node"/>
+  <text x="760" y="369" text-anchor="middle" class="label">后台账号</text>
+  <rect x="832" y="340" width="126" height="46" rx="6" class="node"/>
+  <text x="895" y="369" text-anchor="middle" class="label">商品分类</text>
+  <rect x="967" y="340" width="126" height="46" rx="6" class="node"/>
+  <text x="1030" y="369" text-anchor="middle" class="label">商品信息</text>
+  <rect x="1102" y="340" width="126" height="46" rx="6" class="node"/>
+  <text x="1165" y="369" text-anchor="middle" class="label">商品上下架</text>
+
+  <path d="M950 386 V414" class="line"/>
+  <path d="M760 414 H1165" class="line"/>
+  <path d="M760 414 V450" class="line"/>
+  <path d="M895 414 V450" class="line"/>
+  <path d="M1030 414 V450" class="line"/>
+  <path d="M1165 414 V450" class="line"/>
+
+  <rect x="697" y="450" width="126" height="46" rx="6" class="node"/>
+  <text x="760" y="479" text-anchor="middle" class="label">库存维护</text>
+  <rect x="832" y="450" width="126" height="46" rx="6" class="node"/>
+  <text x="895" y="479" text-anchor="middle" class="label">区域管理</text>
+  <rect x="967" y="450" width="126" height="46" rx="6" class="node"/>
+  <text x="1030" y="479" text-anchor="middle" class="label">仓库管理</text>
+  <rect x="1102" y="450" width="126" height="46" rx="6" class="node"/>
+  <text x="1165" y="479" text-anchor="middle" class="label">提货点管理</text>
+
+  <path d="M950 496 V524" class="line"/>
+  <path d="M815 524 H1085" class="line"/>
+  <path d="M815 524 V560" class="line"/>
+  <path d="M950 524 V560" class="line"/>
+  <path d="M1085 524 V560" class="line"/>
+
+  <rect x="752" y="560" width="126" height="46" rx="6" class="node"/>
+  <text x="815" y="589" text-anchor="middle" class="label">订单管理</text>
+  <rect x="887" y="560" width="126" height="46" rx="6" class="node"/>
+  <text x="950" y="589" text-anchor="middle" class="label">支付记录</text>
+  <rect x="1022" y="560" width="126" height="46" rx="6" class="node"/>
+  <text x="1085" y="589" text-anchor="middle" class="label">发货管理</text>
+</svg>

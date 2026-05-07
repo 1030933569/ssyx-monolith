@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+  <defs>
+    <style>
+      text{font-family:"Microsoft YaHei","SimSun",Arial,sans-serif;fill:#12213a}
+      .title{font-size:24px;font-weight:700}
+      .label{font-size:16px}
+      .small{font-size:13px;fill:#475569}
+      .page{fill:#fff;stroke:#dbe4ef;stroke-width:1}
+      .boundary{fill:#f8fbff;stroke:#94a3b8;stroke-width:1.6;stroke-dasharray:8 6}
+      .case{fill:#edf6ff;stroke:#4b7fc6;stroke-width:1.8}
+      .actor{fill:none;stroke:#334155;stroke-width:2.2;stroke-linecap:round}
+      .assoc{fill:none;stroke:#64748b;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="998" height="698" class="page"/>
+  <text x="500" y="42" text-anchor="middle" class="title">用户端主要用例图</text>
+
+  <g transform="translate(70,235)">
+    <circle cx="50" cy="34" r="24" class="actor"/>
+    <path d="M50 58 L50 130" class="actor"/>
+    <path d="M12 88 L88 88" class="actor"/>
+    <path d="M50 130 L20 190" class="actor"/>
+    <path d="M50 130 L80 190" class="actor"/>
+    <text x="50" y="230" text-anchor="middle" class="label">普通用户</text>
+  </g>
+
+  <rect x="230" y="82" width="720" height="560" rx="8" class="boundary"/>
+  <text x="590" y="114" text-anchor="middle" class="label">社区团购微信小程序端</text>
+
+  <path d="M158 323 H250" class="assoc"/>
+  <path d="M250 148 V592" class="assoc"/>
+
+  <ellipse cx="410" cy="148" rx="95" ry="30" class="case"/>
+  <text x="410" y="154" text-anchor="middle" class="label">用户登录</text>
+  <path d="M250 148 H315" class="assoc"/>
+
+  <ellipse cx="410" cy="222" rx="95" ry="30" class="case"/>
+  <text x="410" y="228" text-anchor="middle" class="label">选择提货点</text>
+  <path d="M250 222 H315" class="assoc"/>
+
+  <ellipse cx="410" cy="296" rx="95" ry="30" class="case"/>
+  <text x="410" y="302" text-anchor="middle" class="label">商品浏览</text>
+  <path d="M250 296 H315" class="assoc"/>
+
+  <ellipse cx="410" cy="370" rx="95" ry="30" class="case"/>
+  <text x="410" y="376" text-anchor="middle" class="label">加入购物车</text>
+  <path d="M250 370 H315" class="assoc"/>
+
+  <ellipse cx="410" cy="444" rx="95" ry="30" class="case"/>
+  <text x="410" y="450" text-anchor="middle" class="label">提交订单</text>
+  <path d="M250 444 H315" class="assoc"/>
+
+  <ellipse cx="410" cy="518" rx="95" ry="30" class="case"/>
+  <text x="410" y="524" text-anchor="middle" class="label">完成支付</text>
+  <path d="M250 518 H315" class="assoc"/>
+
+  <ellipse cx="410" cy="592" rx="95" ry="30" class="case"/>
+  <text x="410" y="598" text-anchor="middle" class="label">查看订单</text>
+  <path d="M250 592 H315" class="assoc"/>
+
+  <path d="M505 296 H540" class="assoc"/>
+  <path d="M540 222 V370" class="assoc"/>
+  <ellipse cx="705" cy="222" rx="105" ry="30" class="case"/>
+  <text x="705" y="228" text-anchor="middle" class="label">查看商品分类</text>
+  <path d="M540 222 H600" class="assoc"/>
+
+  <ellipse cx="705" cy="296" rx="105" ry="30" class="case"/>
+  <text x="705" y="302" text-anchor="middle" class="label">搜索商品</text>
+  <path d="M540 296 H600" class="assoc"/>
+
+  <ellipse cx="705" cy="370" rx="105" ry="30" class="case"/>
+  <text x="705" y="376" text-anchor="middle" class="label">查看商品详情</text>
+  <path d="M540 370 H600" class="assoc"/>
+
+  <path d="M505 370 H540" class="assoc"/>
+  <path d="M540 370 V512" class="assoc"/>
+  <ellipse cx="705" cy="448" rx="105" ry="30" class="case"/>
+  <text x="705" y="454" text-anchor="middle" class="label">修改购物车数量</text>
+  <path d="M540 448 H600" class="assoc"/>
+
+  <ellipse cx="705" cy="512" rx="105" ry="30" class="case"/>
+  <text x="705" y="518" text-anchor="middle" class="label">勾选结算</text>
+  <path d="M540 512 H600" class="assoc"/>
+
+</svg>

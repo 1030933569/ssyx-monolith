@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="900" height="520" fill="#f4f6f8"/>
+  <style>
+    text{font-family:"Microsoft YaHei","SimSun",sans-serif;fill:#1f2933}
+    .title{font-size:28px;font-weight:700}
+    .label{font-size:16px}
+    .box{fill:#fff;stroke:#d7dde3;stroke-width:1.5}
+    .btn{fill:#2f6f9f}
+  </style>
+  <rect x="250" y="80" width="400" height="350" rx="10" class="box"/>
+  <text x="450" y="145" text-anchor="middle" class="title">社区团购后台管理系统</text>
+  <text x="320" y="205" class="label">账号</text>
+  <rect x="320" y="220" width="260" height="42" rx="4" fill="#f8fafc" stroke="#cfd8e3"/>
+  <text x="340" y="247" font-size="15">admin</text>
+  <text x="320" y="292" class="label">密码</text>
+  <rect x="320" y="307" width="260" height="42" rx="4" fill="#f8fafc" stroke="#cfd8e3"/>
+  <text x="340" y="334" font-size="15">******</text>
+  <rect x="320" y="370" width="260" height="46" rx="5" class="btn"/>
+  <text x="450" y="400" text-anchor="middle" font-size="18" fill="#fff">登录</text>
+</svg>
